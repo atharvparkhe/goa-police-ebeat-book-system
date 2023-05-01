@@ -434,3 +434,9 @@ lerna-debug.log
 .DS_Store
 Thumbs.db
 
+#React
+Frontend/node_modules
+
+#NodeJs
+Backend_Node/node_modules
+Backend_Node/.env

@@ -1,0 +1,80 @@
+.page_title {
+  font-weight: 600;
+  margin: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: underline;
+  text-underline-offset: 10px;
+  text-decoration-color: var(--shade-blue);
+}
+
+/* settings page ===================== */
+.button_container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  gap: 10px;
+  background-color: var(--light-1);
+  padding: 2rem 1rem;
+  border-radius: 10px;
+}
+
+.button {
+  text-transform: capitalize;
+}
+
+/* logout btn */
+.button_container div:last-of-type .button {
+  color: var(--red-4);
+}
+
+.button_container div:last-of-type .button:hover {
+  background-color: var(--red-0);
+}
+
+.divider {
+  border: none;
+  border-top: 1px solid var(--blue-gray-2);
+  width: 100%;
+  margin-top: 10px;
+}
+
+/* hide last hr line */
+.button_container div:last-of-type hr {
+  display: none;
+}
+
+/* alert modal ======================== */
+
+/* password form ================= */
+
+.pwd_form_styles {
+  flex-grow: 2;
+  display: flex;
+  flex-direction: column;
+  margin-top: 5%;
+  justify-content: space-between;
+  margin: 5% 0;
+}
+
+.pwd_form_styles input {
+  background-color: white;
+}
+
+.field_label {
+    color: var(--blue-gray-7)
+}
+
+.pwd_submit_btn {
+  align-self: center;
+  width: 20%;
+  padding: 0.8rem 3rem;
+  font-size: 1rem;
+}
+
+.pwd_submit_btn:hover {
+  background-color: var(--dark-blue);
+  /* color: var(--primary-blue); */
+}

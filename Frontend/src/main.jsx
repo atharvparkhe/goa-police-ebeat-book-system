@@ -1,0 +1,34 @@
+import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App";
+import { Provider } from "react-redux";
+import store from "./store";
+import { BrowserRouter } from "react-router-dom";
+import MenuProvider from "react-flexible-sliding-menu";
+import {Provider as AlertProvider,positions,transitions} from 'react-alert'
+import AlertTemplate from "react-alert-template-basic"
+import Sidebar from "./components/Sidebar/Sidebar";
+import { ThemeProvider } from "@mui/material/styles";
+import theme from "./utils/theme";  // theme object
+
+const options = {
+  position:positions.TOP_CENTER,
+  timeout:3000,
+  transition:transitions.SCALE
+}
+
+ReactDOM.createRoot(document.getElementById("root")).render(
+  //<React.StrictMode>
+    <Provider store={store}>
+    <ThemeProvider theme={theme}>
+      <AlertProvider template={AlertTemplate} {...options}>
+        <BrowserRouter>
+          <MenuProvider MenuComponent={Sidebar} width="280px">
+              <App />
+          </MenuProvider>
+        </BrowserRouter>
+      </AlertProvider>
+      </ThemeProvider>
+    </Provider>
+  //</React.StrictMode>
+);
