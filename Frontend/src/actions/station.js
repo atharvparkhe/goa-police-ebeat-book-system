@@ -78,3 +78,44 @@ export const removeStation = (id)=>async(dispatch)=>{
         })
     }    
 }
+
+export const allPI = ()=>async(dispatch)=>{
+    try {
+        dispatch({
+            type:"GetAllPiRequest"
+        })
+        const {data} = await axios.get("/api/v1/users/pi")
+        dispatch({
+            type:"GetAllPiSuccess",
+            payload:data.officers
+        })
+    } catch (error) {
+        console.log(error.response.data,error.response.status)
+        dispatch({
+            type:"GetAllPiFailure",
+            payload:error.response.data
+        })
+    }    
+}
+export const assignStation = (station_id,pi)=>async(dispatch)=>{
+    try {
+        dispatch({
+            type:"AssignPiRequest"
+        })
+        const {data} = await axios.post(`/api/v1/station/assign-pi/${station_id}`,{pi},{
+            headers:{
+                "Content-Type":"application/json"
+            }
+        })
+        dispatch({
+            type:"AssignPiSuccess",
+            payload: data.msg,
+        })
+    } catch (error) {
+        console.log(error.response.data,error.response.status)
+        dispatch({
+            type:"AssignPiFailure",
+            payload:error.response.data
+        })
+    }    
+}

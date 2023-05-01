@@ -1,6 +1,5 @@
 const Beat = require('../models/Beat')
 const Station = require('../models/Station');
-const SubDivision = require('../models/Subdivison');
 const User = require('../models/User')
 const {StatusCodes} = require('http-status-codes')
 const {BadRequestError,NotFoundError,UnauthenticatedError} = require('../errors')
@@ -17,6 +16,10 @@ const assignBeatOfficer = async(req,res)=>{
     
     if(role == 'beat')
         throw new UnauthenticatedError('You should be sp/dysp/pi to assign beat officer')
+    
+    const user = await User.findByIdAndUpdate(constable,{$push:{assigned:id}},{new:true,runValidators:true})
+    if(!user)
+        throw new BadRequestError(`No Constable with id: ${pi}`)
     
     const beat = await Beat.find({_id:id});
     if(beat.length == 0)

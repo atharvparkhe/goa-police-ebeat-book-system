@@ -71,7 +71,7 @@ const assignInspector = async(req,res)=>{
     if(role != 'sp' && role != 'dysp')
         throw new UnauthenticatedError('You should be sp/dysp to assign inspector to station')
     
-    const user = User.findById(pi)
+    const user = await User.findByIdAndUpdate(pi,{$push:{assigned:id}},{new:true,runValidators:true})
     if(!user)
         throw new BadRequestError(`No PI with id: ${pi}`)
     

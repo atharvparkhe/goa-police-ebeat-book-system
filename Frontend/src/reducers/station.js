@@ -66,6 +66,31 @@ export const stationReducer = createReducer(initialState,{
           state.loading = false
     },
 
+    GetAllPiRequest: (state,action)=>{
+        state.loading = true;
+    },
+    GetAllPiSuccess: (state,action)=>{
+        state.officers = action.payload;
+        state.loading = false
+    },
+    GetAllPiFailure: (state,action)=>{     
+          state.error = action.payload
+          state.loading = false
+    },
+
+    AssignPiRequest: (state,action)=>{
+        state.loading = true;
+    },
+    AssignPiSuccess: (state,action)=>{
+        state.message = action.payload;
+        state.loading = false
+    },
+    AssignPiFailure: (state,action)=>{     
+          state.error = action.payload
+          state.loading = false
+    },
+
+
     clearError:(state,action)=>{
         state.error = null
     },

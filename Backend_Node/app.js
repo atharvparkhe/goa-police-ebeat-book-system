@@ -12,6 +12,7 @@ const authRouter = require('./routes/auth');
 const subdivisionRouter = require('./routes/subdivision');
 const stationRouter = require('./routes/station')
 const beatRouter = require('./routes/beat')
+const userRouter = require('./routes/users')
 
 // error handler
 const notFoundMiddleware = require('./middleware/not-found');
@@ -43,6 +44,7 @@ app.use('/api/v1/auth',authRouter);
 app.use('/api/v1/subdivision',subdivisionRouter);
 app.use('/api/v1/station',stationRouter);
 app.use('/api/v1/beat',beatRouter);
+app.use('/api/v1/users',userRouter)
 
 // error handler middleware
 app.use(notFoundMiddleware);

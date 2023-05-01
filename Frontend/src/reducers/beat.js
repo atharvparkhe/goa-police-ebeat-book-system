@@ -65,6 +65,30 @@ export const beatReducer = createReducer(initialState,{
           state.loading = false
     },
 
+    GetAllConstableRequest: (state,action)=>{
+        state.loading = true;
+    },
+    GetAllConstableSuccess: (state,action)=>{
+        state.constables = action.payload;
+        state.loading = false
+    },
+    GetAllConstableFailure: (state,action)=>{     
+          state.error = action.payload
+          state.loading = false
+    },
+
+    AssignConstableRequest: (state,action)=>{
+        state.loading = true;
+    },
+    AssignConstableSuccess: (state,action)=>{
+        state.message = action.payload;
+        state.loading = false
+    },
+    AssignConstableFailure: (state,action)=>{     
+          state.error = action.payload
+          state.loading = false
+    },
+
     clearError:(state,action)=>{
         state.error = null
     },

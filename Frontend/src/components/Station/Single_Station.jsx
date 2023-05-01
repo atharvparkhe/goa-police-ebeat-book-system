@@ -1,8 +1,9 @@
-import {useEffect} from 'react'
+import {useEffect,useState} from 'react'
 import { useDispatch,useSelector } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
-import { getStation,removeStation } from '../../actions/station'
+import { getStation,removeStation,allPI} from '../../actions/station'
 import "leaflet/dist/leaflet.css"
+import Assign_Pi from './Assign_Pi'
 import { Typography,Backdrop,CircularProgress,Button,Chip } from '@mui/material'
 import { MapContainer, TileLayer,Popup,Marker,Polygon } from 'react-leaflet'
 import "./Station.css"
@@ -14,6 +15,7 @@ const Single_Station = () => {
     const navigate = useNavigate()
     const alert = useAlert()
     const position = [15.422671837604284,73.98029707006378]
+    const [assignModal, setAssignModal] = useState(false);
 
     const { loading, error, station,message } = useSelector(
         (state) => state.station
@@ -21,6 +23,7 @@ const Single_Station = () => {
     
     useEffect(()=>{
         dispatch(getStation(id))
+        dispatch(allPI())
     },[])
 
     useEffect(() => {
@@ -34,6 +37,10 @@ const Single_Station = () => {
           navigate('/')
         }
     }, [dispatch, error, alert, message]);
+
+    const openAssignHandler = () => {
+      setAssignModal((v) => !v);
+    };
 
     const myFunc = (coords) =>{
         let arr = []
@@ -71,11 +78,13 @@ const Single_Station = () => {
         );
     else
         return (
+          <>
             <div className='stations'>
                 <div>
                     <Typography variant='h4'>Station</Typography>
                     <div>
                       <Chip label="Add Beat" color='primary' onClick={handleAdd} />
+                      <Chip label="Assign PI" style={{backgroundColor:'green'}} color='secondary' onClick={openAssignHandler} />
                       <Chip label="Delete Station" style={{backgroundColor:'red'}} color='secondary' onClick={handleDelete} />
                     </div>
                     
@@ -116,8 +125,10 @@ const Single_Station = () => {
             })
           }
         </MapContainer>
-    </div>
-        )
+      </div>
+      <Assign_Pi open={assignModal} onClose={openAssignHandler} station_id={id}/>
+      </>
+      )
 }
 
 export default Single_Station

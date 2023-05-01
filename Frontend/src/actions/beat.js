@@ -78,3 +78,44 @@ export const removeBeat = (id)=>async(dispatch)=>{
         })
     }    
 }
+export const allConstable = ()=>async(dispatch)=>{
+    try {
+        dispatch({
+            type:"GetAllConstableRequest"
+        })
+        const {data} = await axios.get("/api/v1/users/constable")
+        dispatch({
+            type:"GetAllConstableSuccess",
+            payload:data.constables
+        })
+    } catch (error) {
+        console.log(error.response.data,error.response.status)
+        dispatch({
+            type:"GetAllConstableFailure",
+            payload:error.response.data
+        })
+    }    
+}
+
+export const assignBeat = (beat_id,constable)=>async(dispatch)=>{
+    try {
+        dispatch({
+            type:"AssignConstableRequest"
+        })
+        const {data} = await axios.post(`/api/v1/beat/assign-officer/${beat_id}`,{constable},{
+            headers:{
+                "Content-Type":"application/json"
+            }
+        })
+        dispatch({
+            type:"AssignConstableSuccess",
+            payload: data.msg,
+        })
+    } catch (error) {
+        console.log(error.response.data,error.response.status)
+        dispatch({
+            type:"AssignConstableFailure",
+            payload:error.response.data
+        })
+    }    
+}

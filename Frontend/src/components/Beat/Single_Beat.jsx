@@ -1,8 +1,9 @@
-import {useEffect} from 'react'
+import {useEffect,useState} from 'react'
 import { useDispatch,useSelector } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
-import { getBeat,removeBeat } from '../../actions/beat'
+import { getBeat,removeBeat,allConstable } from '../../actions/beat'
 import "leaflet/dist/leaflet.css"
+import Assign_Beat from './Assign_Beat'
 import { Typography,Backdrop,CircularProgress,Button,Chip } from '@mui/material'
 import { MapContainer, TileLayer,Popup,Marker,Polygon } from 'react-leaflet'
 import "./Beat.css"
@@ -14,6 +15,7 @@ const Single_Beat = () => {
     const navigate = useNavigate()
     const alert = useAlert()
     const position = [15.422671837604284,73.98029707006378]
+    const [assignModal, setAssignModal] = useState(false);
 
     const { loading, error, beat,message } = useSelector(
         (state) => state.beat
@@ -21,6 +23,7 @@ const Single_Beat = () => {
     
     useEffect(()=>{
         dispatch(getBeat(id))
+        dispatch(allConstable())
     },[])
 
     useEffect(() => {
@@ -51,13 +54,11 @@ const Single_Beat = () => {
         return [centroidY, centroidX];
       }
     
-    //   const handleClick = (sid) =>{
-    //     navigate(`/beat/${sid}`)
-    //   }
 
-      const handleAdd = () =>{
-        navigate(`/assign_beat/${id}`)
-      }
+    const openAssignHandler = () => {
+      setAssignModal((v) => !v);
+    };
+
       const handleDelete = () =>{
         dispatch(removeBeat(id))
         navigate('/')
@@ -71,11 +72,12 @@ const Single_Beat = () => {
         );
     else
         return (
+          <>
             <div className='beats'>
                 <div>
                     <Typography variant='h4'>Beat</Typography>
                     <div>
-                      <Chip label="Assign Officer" color='primary' onClick={handleAdd} />
+                      <Chip label="Assign BO" color='primary' onClick={openAssignHandler} />
                       <Chip label="Delete Beat" style={{backgroundColor:'red'}} color='secondary' onClick={handleDelete} />
                     </div>
                     
@@ -95,8 +97,10 @@ const Single_Beat = () => {
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                 />
                 <Polygon pathOptions={{ color: 'orange' }} positions={myFunc(beat.coords)} />
-        </MapContainer>
-    </div>
+            </MapContainer>
+        </div>
+        <Assign_Beat open={assignModal} onClose={openAssignHandler} beat_id={id}/>
+        </>
         )
 }
 

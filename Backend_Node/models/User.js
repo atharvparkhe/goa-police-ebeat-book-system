@@ -25,6 +25,10 @@ const userSchema = new mongoose.Schema({
     district:{   // Only for dysp
         type:String,
         default:null
+    },
+    assigned:{   // Only for PI and beat
+        type:Array,
+        default:[]
     }
 })
 
