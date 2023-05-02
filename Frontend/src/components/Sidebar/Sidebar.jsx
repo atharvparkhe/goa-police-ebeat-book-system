@@ -84,7 +84,7 @@ const Sidebar = () => {
 
         {/* Station */}
         {
-          role === 'sp' || role === 'dysp' ? 
+          role === 'sp' || role === 'dysp' || role === 'pi' ? 
             <NavLink
             to="/station"
             className={({ isActive }) => (isActive ? classes.active : undefined)}

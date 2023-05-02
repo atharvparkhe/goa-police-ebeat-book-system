@@ -212,5 +212,29 @@ const getStations = async(req,res)=>{
     }
     
 }
+const getMyStation = async(req,res)=>{
+    console.log('test')
+    const {role,userId} = req.user
+    if(role != 'pi')
+        throw new BadRequestError('This endpoint is only for pi')
+    let station = await Station.find({pi:userId})
+    const temp = station[0]
+    let beats = []
 
-module.exports = {getStation,addStation,deleteStation,updateStation,getStations,assignInspector}
+    if(temp.beats.length == 0)
+        res.status(StatusCodes.OK).json({station:station[0]})
+    else{
+        for(let i=0;i<temp.beats.length;i++){
+            const beat_id = temp.beats[i]
+            const beat = await Beat.findById(beat_id)
+            beats.push(beat)
+            if(i == temp.beats.length - 1){
+                station[0].beats = beats
+                res.status(StatusCodes.OK).json({station:station[0]})
+            }
+        }
+    }
+}
+
+module.exports = {getStation,addStation,deleteStation,updateStation,
+    getStations,assignInspector,getMyStation}

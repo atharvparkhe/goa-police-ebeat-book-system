@@ -119,3 +119,25 @@ export const assignStation = (station_id,pi)=>async(dispatch)=>{
         })
     }    
 }
+export const myStation = ()=>async(dispatch)=>{
+    try {
+        dispatch({
+            type:"PiStationRequest"
+        })
+        const {data} = await axios.post(`/api/v1/station/pi/`,{},{
+            headers:{
+                "Content-Type":"application/json"
+            }
+        })
+        dispatch({
+            type:"PiStationSuccess",
+            payload: data.station,
+        })
+    } catch (error) {
+        console.log(error.response.data,error.response.status)
+        dispatch({
+            type:"PiStationFailure",
+            payload:error.response.data
+        })
+    }    
+}

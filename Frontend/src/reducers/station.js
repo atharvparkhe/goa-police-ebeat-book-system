@@ -90,6 +90,18 @@ export const stationReducer = createReducer(initialState,{
           state.loading = false
     },
 
+    PiStationRequest: (state,action)=>{
+        state.loading = true;
+    },
+    PiStationSuccess: (state,action)=>{
+        state.station = action.payload;
+        state.loading = false
+    },
+    PiStationFailure: (state,action)=>{     
+          state.error = action.payload
+          state.loading = false
+    },
+
 
     clearError:(state,action)=>{
         state.error = null

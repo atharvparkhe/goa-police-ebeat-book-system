@@ -10,6 +10,7 @@ import Single_Subdivision from "./components/Subdivision/Single_Subdivision";
 import Station from './components/Station/Station'
 import Add_Station from "./components/Station/Add_Station";
 import Single_Station from "./components/Station/Single_Station";
+import Pi_Station from "./components/Station/Pi_Station";
 import Beat from './components/Beat/Beat'
 import Add_Beat from "./components/Beat/Add_Beat";
 import Single_Beat from "./components/Beat/Single_Beat";
@@ -63,7 +64,7 @@ function App() {
             />
 
             <Route path="/station" element={isAuthenticated?
-              role === 'sp' || role === 'dysp'? <Station/> :<NotFound/>
+              role === 'sp' || role === 'dysp'? <Station/> : role === 'pi'?<Pi_Station/>:<NotFound/>
               :<Login/>} 
             />
             <Route path="/add_station/:id" element={isAuthenticated?
