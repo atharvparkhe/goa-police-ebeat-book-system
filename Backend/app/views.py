@@ -37,12 +37,9 @@ def test(request):
 def line_input(request):
     try:
         obj = DistrictModel.objects.first().region
-        print(obj.dims)
         ser = TestSerializer(data=request.data)
         if ser.is_valid():
-            print(str(ser.validated_data["line"]))
-            # divide_region(str(obj.dims), str(ser.validated_data["line"]))
+            cut_polygon_by_line(str(obj).split(";")[1], str(ser.validated_data["line"]))
         return Response({"message":"hello"}, status=status.HTTP_200_OK)
-        # return Response({"error":ser.errors}, status=status.HTTP_400_BAD_REQUEST)
     except Exception as e:
         return Response({"error":str(e), "message":"Something went wrong"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
