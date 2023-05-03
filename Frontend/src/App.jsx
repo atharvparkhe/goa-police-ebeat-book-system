@@ -16,6 +16,7 @@ import Add_Beat from "./components/Beat/Add_Beat";
 import Single_Beat from "./components/Beat/Single_Beat";
 import NotFound from './components/NotFound/NotFound'
 import Settings from "./components/Settings/Settings";
+import { Test } from "./components/Test/Test";
 import { useDispatch, useSelector } from "react-redux";
 import { StyledEngineProvider } from "@mui/material/styles";
 import { Route, Routes, useNavigate } from "react-router-dom";
@@ -82,6 +83,9 @@ function App() {
             
             <Route path="/login" element={<Login />} />
             <Route path="/settings" element={isAuthenticated?<Settings />:<Login/>} />
+
+
+            <Route path="/test" element={<Test />} />
           </Route>
           <Route
             path="*"

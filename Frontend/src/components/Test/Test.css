@@ -1,0 +1,34 @@
+.beats{
+    margin-top: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 2rem;
+  }
+  .beats > div{
+    display: flex;
+    justify-content: space-between;
+    width: 80vw;
+  }
+  .beats > div > div{
+    display: flex;
+    column-gap: 0.5rem;
+  }
+  .leaflet-container{
+    height: 68vh;
+    width: 80vw;
+  }
+  .popup{
+    display: flex;
+    flex-direction: column;
+  }
+  .buttons{
+    display: flex;
+    justify-content: space-between;
+    width: 80vw;
+  }
+  .buttons > div{
+    display: flex;
+    column-gap: 0.5rem;
+  }
+  
