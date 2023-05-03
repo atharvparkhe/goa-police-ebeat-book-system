@@ -1,0 +1,26 @@
+[
+    {
+        "atharv@gmail.com":{
+            "lat": 12.23456,
+            "lon": 32.23451
+        }
+    },
+    {
+        "suyash@gmail.com":{
+            "lat": 12.32413,
+            "lon": 32.98745
+        }
+    },
+    {
+        "edgar@gmail.com":{
+            "lat": 11.11111,
+            "lon": 98.98722
+        }
+    },
+    {
+        "greeshma@gmail.com":{
+            "lat": 9.23421,
+            "lon": 12.3412
+        }
+    }
+]

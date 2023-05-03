@@ -27,6 +27,7 @@ INSTALLED_APPS = [
     'base.apps.BaseConfig',
     'authentication.apps.AuthenticationConfig',
     'app.apps.AppConfig',
+    'report.apps.ReportConfig',
 ]
 
 MIDDLEWARE = [
