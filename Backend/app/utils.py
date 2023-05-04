@@ -1,4 +1,4 @@
-from shapely import wkt
+
 from shapely.ops import linemerge, unary_union, polygonize
 
 
@@ -38,4 +38,20 @@ def cut_polygon_by_line(pol, lin):
     except Exception as e:
         print(e)
 
+import  shapely
+from shapely import wkt
+
+def someFn(obj, line):
+    try:
+        po = obj.wkt
+        li = wkt.loads(line)
+        li.linemerge(po.boundary) # collection of individual linestrings for splitting in a list and add the polygon lines to it.
+        merged_lines = shapely.ops.linemerge(li)
+        border_lines = shapely.ops.unary_union(merged_lines)
+        decomposition = shapely.ops.polygonize(border_lines)
+        print("@@@@@@@@@@@@@@@@@@@@@@@@@@")
+        print(list(decomposition))
+        print("@@@@@@@@@@@@@@@@@@@@@@@@@@")
+    except Exception as e:
+        print(e)
 

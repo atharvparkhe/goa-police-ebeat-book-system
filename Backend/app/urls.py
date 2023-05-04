@@ -13,6 +13,6 @@ urlpatterns = [
     
     path('line/', views.line_input, name="line"),
     
-    # path('category/', views.CategoryGet.as_view(), name="get-categories"),
+    path('locations/', views.LocaitonGet.as_view(), name="location"),
 
 ]

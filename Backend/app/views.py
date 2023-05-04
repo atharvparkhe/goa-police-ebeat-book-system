@@ -39,7 +39,16 @@ def line_input(request):
         obj = DistrictModel.objects.first().region
         ser = TestSerializer(data=request.data)
         if ser.is_valid():
-            cut_polygon_by_line(str(obj).split(";")[1], str(ser.validated_data["line"]))
+            # someFn(str(obj).split(";")[1], str(ser.validated_data["line"]))
+            someFn(obj, str(ser.validated_data["line"]))
         return Response({"message":"hello"}, status=status.HTTP_200_OK)
     except Exception as e:
         return Response({"error":str(e), "message":"Something went wrong"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+    
+
+
+
+class LocaitonGet(ListAPIView):
+    queryset = LocaitonsModel.objects.all()
+    serializer_class = LocationSerializer
+

@@ -11,3 +11,14 @@ class DistrictModelSerializer(gis_serializers.GeoModelSerializer):
 
 class TestSerializer(serializers.Serializer):
     line = serializers.CharField(required=True)
+
+class CategorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CategoryModel
+        fields = ["category_name", "colour_hash_codw"]
+
+class LocationSerializer(gis_serializers.GeoModelSerializer):
+    class Meta:
+        model = LocaitonsModel
+        geo_field = ("location")
+        exclude = ["created_at", "updated_at", "category"]
