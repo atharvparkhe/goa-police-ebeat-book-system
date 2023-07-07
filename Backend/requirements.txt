@@ -2,7 +2,7 @@ asgiref==3.6.0
 async-timeout==4.0.2
 certifi==2022.12.7
 charset-normalizer==3.1.0
-Django==4.2.1
+Django==4.2.3
 django-channels==0.7.0
 django-cors-headers==3.14.0
 django-leaflet==0.28.3
